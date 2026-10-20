@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Revive Spares</title>
+  <meta name="description" content="Revive Spares strips accident-damaged Nissan and VW vehicles for quality used parts: engines, gearboxes, lights, panels, rims and more.">
+  <meta name="theme-color" content="#0b0c0e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23e39a63' d='M16 1.5 28.6 8.75v14.5L16 30.5 3.4 23.25V8.75Z'/%3E%3Cpath fill='none' stroke='%230b0c0e' stroke-width='2.4' stroke-linecap='round' d='M19.86 11.4A6 6 0 1 1 13.95 10.36'/%3E%3Cpath fill='%230b0c0e' d='M16.6 9.4 14.7 12.6 13 8.2Z'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip" href="#parts">Skip to parts</a>
+
+  <div class="demo-strip">
+    <p class="wrap">Demo website. Stock, prices, photos of staff and contact details are placeholders.</p>
+  </div>
+
+  <header class="site-header" id="top">
+    <div class="wrap header-row">
+      <a class="brand" href="#top" aria-label="Revive Spares home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path class="brand-hex" d="M16 1.5 28.6 8.75v14.5L16 30.5 3.4 23.25V8.75Z"/>
+          <path class="brand-arrow" d="M19.86 11.4A6 6 0 1 1 13.95 10.36"/>
+          <path class="brand-head" d="M16.6 9.4 14.7 12.6 13 8.2Z"/>
+        </svg>
+        <span class="brand-name">Revive <span>Spares</span></span>
+      </a>
+
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Menu</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <a href="#stripping">Now stripping</a>
+        <a href="#parts">Parts</a>
+        <a href="#sell">We buy cars</a>
+        <a href="#fata">Talk to Fata</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="list-button" id="list-open" aria-haspopup="dialog">
+        <svg class="list-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg>
+        <span class="list-label">Parts list</span> <span class="list-count" id="list-count">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero: full-bleed photo, thesis and the part finder -->
+    <section class="hero">
+      <div class="hero-media" aria-hidden="true">
+        <img src="assets/img/hero/headlight.jpg" width="2400" height="1348" alt="" fetchpriority="high">
+      </div>
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <p class="kicker kicker-oil">Nissan &amp; VW specialists</p>
+          <h1>Genuine used parts, <em>revived</em> for the road.</h1>
+          <p class="lede">Engines, gearboxes, lights, panels and rims off accident-damaged bakkies, SUVs and hatchbacks. Every part is checked before it leaves, and you get photos on WhatsApp before you pay.</p>
+
+          <form class="finder" id="finder" aria-label="Find a part">
+            <div class="field">
+              <label for="finder-vehicle">Vehicle</label>
+              <select id="finder-vehicle"></select>
+            </div>
+            <div class="field">
+              <label for="finder-cat">Part type</label>
+              <select id="finder-cat"></select>
+            </div>
+            <div class="field field-wide">
+              <label for="finder-q">Part name</label>
+              <input id="finder-q" type="search" placeholder="e.g. headlight, alternator" autocomplete="off">
+            </div>
+            <button class="btn btn-accent" type="submit">
+              Search parts
+              <svg class="btn-icon btn-icon-end" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </form>
+
+          <div class="hero-stats" id="hero-facts"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vehicles currently being parted out -->
+    <section class="section" id="stripping" aria-labelledby="stripping-title">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="kicker">In the yard</p>
+          <h2 id="stripping-title">Now stripping</h2>
+          <p>These cars are in the yard and being parted out. If you need something off one of them, ask before it goes.</p>
+        </div>
+        <div class="vehicles" id="vehicles"></div>
+      </div>
+    </section>
+
+    <!-- Parts catalogue -->
+    <section class="section section-alt" id="parts" aria-labelledby="parts-title">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="kicker">The shelf</p>
+          <h2 id="parts-title">Parts ready to fit</h2>
+          <p>A sample of what's tested and ready to go. Most stock isn't listed, so if you can't see your part, send us your VIN or engine code.</p>
+        </div>
+
+        <div class="toolbar">
+          <div class="toolbar-row">
+            <div class="field">
+              <label for="filter-q">Search</label>
+              <input id="filter-q" type="search" placeholder="Search parts" autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="filter-vehicle">Vehicle</label>
+              <select id="filter-vehicle"></select>
+            </div>
+          </div>
+          <div class="chips-scroll">
+            <div class="chips" id="filter-cats" role="group" aria-label="Part type"></div>
+          </div>
+          <p class="result-count" id="result-count" aria-live="polite"></p>
+        </div>
+
+        <div class="parts" id="parts-grid"></div>
+
+        <div class="empty" id="parts-empty" hidden>
+          <p class="empty-title">Nothing listed for that search.</p>
+          <p>Most of our stock isn't online yet. Send us the part and your vehicle details and we'll check the shelves.</p>
+          <a class="btn btn-accent" data-wa="Hi Revive Spares, I'm looking for a part that isn't on your website." href="#" target="_blank" rel="noopener">Ask on WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why buy here -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="wrap about-grid">
+        <div class="about-photos" data-reveal>
+          <img class="about-photo-a" src="assets/img/parts/engines-stock.jpg" width="1000" height="685" loading="lazy" alt="Used engines and parts stacked in a workshop">
+          <img class="about-photo-b" src="assets/img/parts/mechanic.jpg" width="1000" height="1500" loading="lazy" alt="Mechanic working in an engine bay">
+        </div>
+        <div class="about-copy" data-reveal>
+          <p class="kicker">Why Revive</p>
+          <h2 id="about-title">Why buy used from us</h2>
+          <p class="about-lede">A good used part off a low-mileage donor often outlasts a cheap pattern part, at a fraction of the dealer price.</p>
+          <dl class="points">
+            <div>
+              <dt>Checked before it's sold</dt>
+              <dd>Engines get a compression test. Alternators, starters and ECUs are bench-tested.</dd>
+            </div>
+            <div>
+              <dt>Guarantee on every part</dt>
+              <dd>Three months on engines and gearboxes, 30 days on everything else.</dd>
+            </div>
+            <div>
+              <dt>Photos before you pay</dt>
+              <dd>We send photos and the stock code on WhatsApp so you know exactly what you're getting.</dd>
+            </div>
+            <div>
+              <dt>Collect or courier</dt>
+              <dd>Collect from the yard, or we courier anywhere in South Africa.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- How ordering works (a real sequence) -->
+    <section class="section section-oil" id="how" aria-labelledby="how-title">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="kicker kicker-oil">Ordering</p>
+          <h2 id="how-title">How to order</h2>
+        </div>
+        <ol class="steps" data-reveal>
+          <li>
+            <h3>Send us your vehicle details</h3>
+            <p>The part you need plus your VIN, engine code or licence disc. That's how we match the exact part.</p>
+          </li>
+          <li>
+            <h3>Fata checks the shelf</h3>
+            <p>He confirms stock and price, then sends photos of the actual part with its stock code.</p>
+          </li>
+          <li>
+            <h3>Pay, then collect or courier</h3>
+            <p>Pay by EFT or cash at the yard. Couriered parts usually arrive in 2 to 4 working days.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- We buy cars -->
+    <section class="section" id="sell" aria-labelledby="sell-title">
+      <div class="wrap sell-grid">
+        <figure class="sell-photo" data-reveal>
+          <img src="assets/img/yard/golf-tow.jpg" width="1600" height="1200" loading="lazy" alt="Fire-damaged grey VW Golf 5 GTI towed into the yard at sunset">
+          <figcaption class="photo-label">Bought &amp; collected</figcaption>
+        </figure>
+        <div class="sell-copy" data-reveal>
+          <p class="kicker">We buy cars</p>
+          <h2 id="sell-title">Selling a <span class="nowrap">write-off</span> or non-runner?</h2>
+          <p>We buy Nissan and VW vehicles in any condition, and other makes too. Our tow truck collects, and we pay on the spot.</p>
+          <ul class="ticks">
+            <li>Accident-damaged and insurance write-offs</li>
+            <li>Fire or flood damage</li>
+            <li>Blown engines and gearboxes</li>
+            <li>Old bakkies and high-mileage cars</li>
+          </ul>
+          <a class="btn btn-accent" data-wa="Hi Revive Spares, I'd like an offer on a vehicle. Make/model: , Year: , Condition: " href="#" target="_blank" rel="noopener">Get an offer on WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sales contact -->
+    <section class="section section-oil fata" id="fata" aria-labelledby="fata-title">
+      <div class="wrap fata-grid">
+        <figure class="fata-photo" data-reveal>
+          <img src="assets/img/team/fata.jpg" width="1400" height="933" loading="lazy" alt="Fata, sales consultant at Revive Spares (placeholder photo)">
+          <figcaption>
+            <span class="fata-name">Fata</span>
+            <span class="fata-role">Sales consultant</span>
+          </figcaption>
+        </figure>
+        <div class="fata-copy" data-reveal>
+          <p class="kicker kicker-oil">Your sales contact</p>
+          <h2 id="fata-title">Talk to Fata.</h2>
+          <p class="fata-lede">Fata handles sales at Revive Spares. Send him your VIN or engine code and he'll match the exact part, send photos straight off the shelf and arrange collection or courier.</p>
+          <ul class="fata-points">
+            <li>Matches parts by VIN, engine code or licence disc</li>
+            <li>Sends real photos and the stock code before you pay</li>
+            <li>Replies within the hour during trading hours</li>
+          </ul>
+          <div class="fata-actions">
+            <a class="btn btn-accent" data-wa="Hi Fata, I'm looking for a part. Vehicle: , Part: " href="#" target="_blank" rel="noopener">
+              <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 18.8Z"/></svg>
+              Chat to Fata on WhatsApp
+            </a>
+            <a class="btn btn-ghost" data-tel href="#">
+              <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+              Call Fata
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section section-alt" id="contact" aria-labelledby="contact-title">
+      <div class="wrap contact-grid">
+        <div class="contact-info" data-reveal>
+          <div class="section-head">
+            <p class="kicker">Contact</p>
+            <h2 id="contact-title">Visit the yard</h2>
+          </div>
+          <dl class="details">
+            <div><dt>Sales</dt><dd>Fata</dd></div>
+            <div><dt>WhatsApp</dt><dd><a data-wa="Hi Revive Spares, " href="#" target="_blank" rel="noopener" data-config="phone"></a></dd></div>
+            <div><dt>Call</dt><dd><a data-tel href="#" data-config="phone"></a></dd></div>
+            <div><dt>Address</dt><dd data-config="address"></dd></div>
+          </dl>
+          <table class="hours">
+            <caption>Trading hours</caption>
+            <tbody>
+              <tr><th scope="row">Monday to Friday</th><td>08:00 – 17:00</td></tr>
+              <tr><th scope="row">Saturday</th><td>08:00 – 13:00</td></tr>
+              <tr><th scope="row">Sunday &amp; public holidays</th><td>Closed</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <form class="enquiry" id="enquiry" novalidate data-reveal>
+          <h3>Send an enquiry</h3>
+          <div class="form-grid">
+            <div class="field">
+              <label for="enq-name">Your name</label>
+              <input id="enq-name" name="name" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="enq-phone">Phone or WhatsApp</label>
+              <input id="enq-phone" name="phone" type="tel" autocomplete="tel" required>
+            </div>
+            <div class="field">
+              <label for="enq-vehicle">Vehicle</label>
+              <input id="enq-vehicle" name="vehicle" placeholder="e.g. 2008 Nissan Hardbody 2.5 TDi" required>
+            </div>
+            <div class="field">
+              <label for="enq-vin">VIN or engine code <span class="optional">(optional)</span></label>
+              <input id="enq-vin" name="vin" autocomplete="off">
+            </div>
+            <div class="field field-wide">
+              <label for="enq-part">Part needed</label>
+              <textarea id="enq-part" name="part" rows="3" placeholder="e.g. Right-hand headlight and grille" required></textarea>
+            </div>
+          </div>
+          <p class="form-error" id="enq-error" hidden>Fill in your name, phone number, vehicle and the part you need.</p>
+          <button class="btn btn-accent" type="submit">Send enquiry</button>
+          <p class="form-done" id="enq-done" hidden></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <p class="footer-brand">Revive <span>Spares</span></p>
+        <p>Quality used parts for Nissan and VW vehicles.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="#stripping">Now stripping</a>
+        <a href="#parts">Parts</a>
+        <a href="#sell">We buy cars</a>
+        <a href="#fata">Talk to Fata</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="credits">
+        <p>Yard photos: Revive Spares. Hero, portrait and part photos from <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a> by:</p>
+        <p id="credits"></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Parts list drawer -->
+  <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" hidden>
+    <div class="drawer-head">
+      <h2 id="drawer-title">Your parts list</h2>
+      <button class="icon-btn" id="list-close" aria-label="Close parts list">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <p class="drawer-note">Build a list, then send it to Fata on WhatsApp. He'll confirm stock and fitment before you pay.</p>
+    <ul class="drawer-items" id="drawer-items"></ul>
+    <p class="drawer-empty" id="drawer-empty">Your list is empty. Tap <strong>Add to list</strong> on any part.</p>
+    <div class="drawer-foot" id="drawer-foot">
+      <p class="drawer-total">Estimate <span id="drawer-total">R0</span></p>
+      <a class="btn btn-accent btn-block" id="drawer-send" href="#" target="_blank" rel="noopener">Send list to Fata on WhatsApp</a>
+      <div class="drawer-actions">
+        <button class="btn btn-quiet" id="drawer-copy" type="button">Copy list</button>
+        <button class="btn btn-quiet" id="drawer-clear" type="button">Clear list</button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+# Raw source photos (cropped copies live in assets/img/yard)
+/*.jpeg
+/*.jpg
+
+# Local tooling
+.claude/
